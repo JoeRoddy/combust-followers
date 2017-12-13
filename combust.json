@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "users": "latest",
+    "chat": "latest"
+  },
+  "installation": {
+    "components/combust_examples/users/SocialContacts.jsx": {
+      "imports": ["import FollowersList from \"../followers/FollowersList\";"],
+      "after": {
+        "pattern": "const componentsByMode = {",
+        "code": [
+          "\n\tFollowers: <FollowersList displayFollowers />,",
+          "\tFollowing: <FollowersList displayFollowing />,"
+        ]
+      }
+    },
+    "components/combust_examples/users/Profile.jsx": {
+      "imports": [
+        "import followersStore from \"../../../stores/FollowersStore\";"
+      ],
+      "replace": {
+        "pattern": "alert(\"combust install followers\");\n",
+        "code": ["followersStore.followUser(userId);"]
+      }
+    }
+  }
+}
