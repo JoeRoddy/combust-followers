@@ -57,11 +57,11 @@ class FollowersService {
   listenToUser(userId, callback) {
     firebase
       .database()
-      .ref("users/" + userId + "/public")
+      .ref("users/publicInfo/" + userId)
       .on("value", snapshot => {
         let user = snapshot.val();
         if (!user) {
-          callback(null, null);
+          return callback("no userdata found for follower w/id: " + userId);
         }
         user.id = userId;
         callback(null, user);
