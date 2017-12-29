@@ -20,7 +20,10 @@
       ],
       "replace": {
         "pattern": "alert(\"combust install followers\");\n",
-        "code": ["followersStore.followUser(userId);"]
+        "code": [
+          "followersStore.followUser(userId);",
+          "alert('Following User');"
+        ]
       }
     }
   }
