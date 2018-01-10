@@ -25,5 +25,21 @@
         ]
       }
     }
+  },
+  "rules":{
+    ".read":true,
+    "followedIdsByUser":{
+       "$uid": {
+      "$influencerUid": {
+        ".write": "auth.uid === $uid"
+      }
+    }
+    },
+      "followerIdsByUser"{
+         "$influencerUid": {
+      "$followerUid": {
+        ".write": "auth.uid === $followerUid"
+      }
+      }
   }
 }
