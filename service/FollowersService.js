@@ -12,12 +12,12 @@ class FollowersService {
   setFollowed(friendId, uid, isFollowed) {
     firebase
       .database()
-      .ref("followerIdsByUser/" + friendId)
+      .ref("followers/followerIdsByUser/" + friendId)
       .child(uid)
       .set(isFollowed ? true : null);
     firebase
       .database()
-      .ref("followedIdsByUser/" + uid)
+      .ref("followers/followedIdsByUser/" + uid)
       .child(friendId)
       .set(isFollowed ? true : null);
   }
@@ -37,7 +37,7 @@ class FollowersService {
   listenToFollowerIds(userId, callback) {
     firebase
       .database()
-      .ref("followerIdsByUser")
+      .ref("followers/followerIdsByUser")
       .child(userId)
       .on("child_added", snap => {
         callback(null, snap.key);
@@ -47,7 +47,7 @@ class FollowersService {
   listenToFollowedIds(userId, callback) {
     firebase
       .database()
-      .ref("followedIdsByUser")
+      .ref("followers/followedIdsByUser")
       .child(userId)
       .on("child_added", snap => {
         callback(null, snap.key);
