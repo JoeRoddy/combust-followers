@@ -1,10 +1,9 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-import followersStore from "../../../stores/FollowersStore";
-//FOLLOWERS_DEPENDENCIES
+import followersStore from "../../stores/FollowersStore";
 import UserList from "../users/UserList";
-import chatStore from "../../../stores/ChatStore";
+import chatStore from "../../stores/ChatStore";
 
 followersStore.onFollowerClicked(user => {
   chatStore.openConversationWithUser(user.id);
