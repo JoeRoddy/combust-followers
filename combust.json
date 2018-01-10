@@ -26,20 +26,21 @@
       }
     }
   },
-  "rules":{
-    ".read":true,
-    "followedIdsByUser":{
-       "$uid": {
+  "rules": {
+    ".read": true,
+    "followedIdsByUser": {
+      "$uid": {
+        "$influencerUid": {
+          ".write": "auth.uid === $uid"
+        }
+      }
+    },
+    "followerIdsByUser": {
       "$influencerUid": {
-        ".write": "auth.uid === $uid"
+        "$followerUid": {
+          ".write": "auth.uid === $followerUid"
+        }
       }
     }
-    },
-      "followerIdsByUser"{
-         "$influencerUid": {
-      "$followerUid": {
-        ".write": "auth.uid === $followerUid"
-      }
-      }
   }
 }
