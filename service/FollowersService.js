@@ -22,18 +22,6 @@ class FollowersService {
       .set(isFollowed ? true : null);
   }
 
-  listenToFollowers(userId, callback) {
-    this.listenToFollowerIds(userId, (err, friendId) => {
-      this.listenToUser(friendId, callback);
-    });
-  }
-
-  listenToFollowed(userId, callback) {
-    this.listenToFollowedIds(userId, (err, friendId) => {
-      this.listenToUser(friendId, callback);
-    });
-  }
-
   listenToFollowerIds(userId, callback) {
     firebase
       .database()
@@ -51,20 +39,6 @@ class FollowersService {
       .child(userId)
       .on("child_added", snap => {
         callback(null, snap.key);
-      });
-  }
-
-  listenToUser(userId, callback) {
-    firebase
-      .database()
-      .ref("users/publicInfo/" + userId)
-      .on("value", snapshot => {
-        let user = snapshot.val();
-        if (!user) {
-          return callback("no userdata found for follower w/id: " + userId);
-        }
-        user.id = userId;
-        callback(null, user);
       });
   }
 }

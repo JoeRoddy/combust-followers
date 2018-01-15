@@ -1,12 +1,10 @@
 import { observable, computed } from "mobx";
-import followersService from "../service/FollowersService";
 
-//DEPENDENCIES
+import followersService from "../service/FollowersService";
 import usersStore from "./UsersStore";
 
 class FollowersStore {
-  subscribeToEvents() {
-    //must be inline functions, or use .bind(this)
+  init() {
     usersStore.onLogin(this.performInitialLoad.bind(this));
     usersStore.onLogout(this.onUserLogout.bind(this));
   }
@@ -19,24 +17,22 @@ class FollowersStore {
     if (this.isInitialLoadComplete) {
       return;
     }
-    followersService.listenToFollowers(user.id, (err, follower) => {
-      err ? console.log(err) : this.storeFollower(follower.id, follower);
+    followersService.listenToFollowerIds(user.id, (err, followerId) => {
+      err ? console.log(err) : this.storeFollower(followerId);
     });
-    followersService.listenToFollowed(user.id, (err, userBeingFollowed) => {
-      err
-        ? console.log(err)
-        : this.storeFollowed(userBeingFollowed.id, userBeingFollowed);
+    followersService.listenToFollowedIds(user.id, (err, influencerId) => {
+      err ? console.log(err) : this.storeFollowed(influencerId);
     });
     this.isInitialLoadComplete = true;
   }
 
-  storeFollower(userId, user) {
-    usersStore.saveUserLocally(userId, user);
+  storeFollower(userId) {
+    usersStore.getUserById(userId); //apply listener
     this.followerIdsMap.set(userId, true);
   }
 
-  storeFollowed(userId, user) {
-    usersStore.saveUserLocally(userId, user);
+  storeFollowed(userId) {
+    usersStore.getUserById(userId); //apply listener
     this.followedIdsMap.set(userId, true);
   }
 
