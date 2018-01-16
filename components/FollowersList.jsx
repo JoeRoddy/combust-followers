@@ -1,24 +1,24 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-import followersStore from "../../stores/FollowersStore";
+import followerStore from "../../stores/FollowerStore";
 import UserList from "../users/UserList";
 import chatStore from "../../stores/ChatStore";
 
-followersStore.onFollowerClicked(user => {
+followerStore.onFollowerClicked(user => {
   chatStore.openConversationWithUser(user.id);
 });
 
 const FollowersList = observer(({ displayFollowers, displayFollowing }) => {
   const users = displayFollowing
-    ? followersStore.usersBeingFollowed
-    : followersStore.followers;
+    ? followerStore.usersBeingFollowed
+    : followerStore.followers;
 
   return (
     <UserList
       title="Friends"
       users={users}
-      onUserClicked={followersStore.handleFollowerClick}
+      onUserClicked={followerStore.handleFollowerClick}
     />
   );
 });

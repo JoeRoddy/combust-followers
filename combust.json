@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "chat": "latest"
+    "chat": "latest",
+    "users": "latest"
   },
   "installation": {
     "components/users/SocialContacts.jsx": {
@@ -14,13 +15,11 @@
       }
     },
     "components/users/Profile.jsx": {
-      "imports": [
-        "import followersStore from \"../../stores/FollowersStore\";"
-      ],
+      "imports": ["import followerStore from \"../../stores/FollowerStore\";"],
       "replace": {
         "pattern": "alert(\"combust install followers\");\n",
         "code": [
-          "followersStore.followUser(userId);",
+          "followerStore.followUser(userId);",
           "alert('Following User');"
         ]
       }
