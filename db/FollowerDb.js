@@ -1,6 +1,6 @@
 import firebase from "firebase";
 
-class FollowerService {
+class FollowerDb {
   followUser(influencerId, uid) {
     this.setFollowed(influencerId, uid, true);
   }
@@ -43,6 +43,6 @@ class FollowerService {
   }
 }
 
-const followerService = new FollowerService();
+const followerDb = new FollowerDb();
 
-export default followerService;
+export default followerDb;

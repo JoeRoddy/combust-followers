@@ -1,6 +1,6 @@
 import { observable, computed } from "mobx";
 
-import followerService from "../service/FollowerService";
+import followerDb from "../db/FollowerDb";
 import userStore from "./UserStore";
 
 class FollowerStore {
@@ -17,10 +17,10 @@ class FollowerStore {
     if (this.isInitialLoadComplete) {
       return;
     }
-    followerService.listenToFollowerIds(user.id, (err, followerId) => {
+    followerDb.listenToFollowerIds(user.id, (err, followerId) => {
       err ? console.log(err) : this.storeFollower(followerId);
     });
-    followerService.listenToFollowedIds(user.id, (err, influencerId) => {
+    followerDb.listenToFollowedIds(user.id, (err, influencerId) => {
       err ? console.log(err) : this.storeFollowed(influencerId);
     });
     this.isInitialLoadComplete = true;
@@ -45,11 +45,11 @@ class FollowerStore {
   }
 
   followUser(influencerId) {
-    followerService.followUser(influencerId, userStore.userId);
+    followerDb.followUser(influencerId, userStore.userId);
   }
 
   unfollowUser(influencerId) {
-    followerService.unfollowUser(influencerId, userStore.userId);
+    followerDb.unfollowUser(influencerId, userStore.userId);
   }
 
   @computed
