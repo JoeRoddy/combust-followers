@@ -48,7 +48,7 @@ export default class FollowersList extends Component {
         ) : (
           <UserList
             users={users}
-            onUserClicked={user => nav.navigate("Profile", { id: user.id })}
+            onUserPressed={user => nav.navigate("Profile", { id: user.id })}
           />
         )}
       </View>

@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "chat": "latest",
     "users": "latest",
     "notifications": "latest"
   },

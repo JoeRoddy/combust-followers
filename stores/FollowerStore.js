@@ -70,21 +70,6 @@ class FollowerStore {
     return usersBeingFollowed;
   }
 
-  onFollowerClickedTriggers = [];
-  onFollowerClicked = func => {
-    this.onFollowerClickedTriggers.push(func);
-  };
-
-  handleFollowerClick = follower => {
-    this.onFollowerClickedTriggers.length > 0
-      ? this.onFollowerClickedTriggers.forEach(event => {
-          event(follower);
-        })
-      : alert(
-          "follower clicked, add the chat module or create your own handler.\n\nie: \nfollowerStore.onfollowerClicked(follower =>{\n\talert('do stuff'))\n}"
-        );
-  };
-
   onUserLogout(user) {
     this.followedIdsMap.clear();
     this.followerIdsMap.clear();
