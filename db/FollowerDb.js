@@ -1,5 +1,7 @@
 import firebase from "firebase";
 
+import notificationDb from "./NotificationDb";
+
 class FollowerDb {
   followUser(influencerId, uid) {
     this.setFollowed(influencerId, uid, true);
@@ -20,6 +22,9 @@ class FollowerDb {
       .ref("followers/followedIdsByUser/" + uid)
       .child(friendId)
       .set(isFollowed ? true : null);
+    if (isFollowed) {
+      _createNewFollowerNotif(friendId, uid, "You have a new follower!");
+    }
   }
 
   listenToFollowerIds(userId, callback) {
@@ -46,3 +51,15 @@ class FollowerDb {
 const followerDb = new FollowerDb();
 
 export default followerDb;
+
+const _createNewFollowerNotif = function(receiverId, userId, notifBody) {
+  notificationDb.createNotification(
+    {
+      type: "new_follower",
+      body: notifBody,
+      link: "/profile/" + userId
+    },
+    receiverId,
+    userId
+  );
+};
