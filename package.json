@@ -1,6 +1,6 @@
 {
   "name": "combust-followers",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "followers module for combust",
   "main": "index.js",
   "scripts": {
