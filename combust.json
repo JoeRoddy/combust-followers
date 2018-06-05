@@ -34,13 +34,21 @@
       "imports": [
         "import followerStore from \"../../stores/FollowerStore\";"
       ],
-      "replace": {
-        "pattern": "alert(\"Execute from your terminal:\", \"combust install followers\");\n",
-        "code": [
-          "followerStore.followUser(userId);",
-          "alert('Following User');"
-        ]
-      }
+      "replace": [
+        {
+          "pattern": "alert(\"Execute from your terminal:\", \"combust install followers\");\n",
+          "code": [
+            "followerStore.followUser(userId);",
+            "alert('Following User');"
+          ]
+        },
+        {
+          "pattern": "isFollowed = false",
+          "code": [
+            "isFollowed = followerStore.isFollowing(userId)"
+          ]
+        }
+      ]
     },
     "components/reusable/SideMenu.js": {
       "after": {
