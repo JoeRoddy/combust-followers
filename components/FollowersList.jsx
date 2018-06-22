@@ -15,7 +15,7 @@ const FollowersList = observer(
       <UserList
         title="Friends"
         users={users}
-        onUserClicked={() => history.push("/profile/" + userStore.userId)}
+        onUserClicked={user => history.push("/profile/" + user.id)}
       />
     );
   }
