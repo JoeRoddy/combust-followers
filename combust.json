@@ -4,7 +4,7 @@
     "notifications": "latest"
   },
   "installation": {
-    "components/users/SocialContacts.jsx": {
+    "src/components/users/SocialContacts.jsx": {
       "imports": ["import FollowersList from \"../followers/FollowersList\";"],
       "after": {
         "pattern": "const componentsByMode = {",
@@ -14,7 +14,7 @@
         ]
       }
     },
-    "components/users/Profile.jsx": {
+    "src/components/users/Profile.jsx": {
       "imports": ["import followerStore from \"../../stores/FollowerStore\";"],
       "replace": {
         "pattern": "alert(\"combust install followers\");\n",
@@ -26,12 +26,11 @@
     }
   },
   "installation_mobile": {
-    "components/users/Profile.js": {
+    "src/components/users/Profile.js": {
       "imports": ["import followerStore from \"../../stores/FollowerStore\";"],
       "replace": [
         {
-          "pattern":
-            "alert(\"Execute from your terminal:\", \"combust install followers\");\n",
+          "pattern": "alert(\"Execute from your terminal:\", \"combust install followers\");\n",
           "code": [
             "followerStore.followUser(userId);",
             "alert('Following User');"
@@ -43,7 +42,7 @@
         }
       ]
     },
-    "components/reusable/SideMenu.js": {
+    "src/components/reusable/SideMenu.js": {
       "after": {
         "pattern": "const COMBUST_MENU_ITEMS = [",
         "code": [
@@ -51,7 +50,7 @@
         ]
       }
     },
-    "components/Routes.js": {
+    "src/components/Routes.js": {
       "imports": ["import FollowersList from \"./followers/FollowersList\";"],
       "after": {
         "pattern": "const COMBUST_SCREENS = {",
