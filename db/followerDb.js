@@ -1,6 +1,6 @@
 import firebase from "firebase";
 
-import notificationDb from "./NotificationDb";
+import notificationDb from "./notificationDb";
 
 class FollowerDb {
   followUser(influencerId, uid) {
