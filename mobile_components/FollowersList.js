@@ -2,8 +2,8 @@ import React, { Component, Fragment } from "react";
 import { observer } from "mobx-react";
 import { Text, View } from "react-native";
 
-import nav from "../../helpers/NavigatorHelper";
-import followerStore from "../../stores/FollowerStore";
+import nav from "../../helpers/navigatorHelper";
+import followerStore from "../../stores/followerStore";
 import { colors } from "../../assets/styles/AppStyles";
 import { Button, Header } from "../reusable";
 import UserList from "../users/UserList";

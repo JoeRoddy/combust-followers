@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-import followerStore from "../../stores/FollowerStore";
+import followerStore from "../../stores/followerStore";
 import UserList from "../users/UserList";
 
 const FollowersList = observer(({ displayFollowing, history }) => {

@@ -1,6 +1,6 @@
 import { observable, computed } from "mobx";
 
-import followerDb from "../db/FollowerDb";
+import followerDb from "../db/followerDb";
 import userStore from "./UserStore";
 
 class FollowerStore {
